@@ -1,21 +1,22 @@
-// PodcastList.js
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import api from '../Services/api';
 
 const PodcastList = () => {
   const [podcasts, setPodcasts] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    // Fetch the list of podcasts
+    const fetchPodcasts = async () => {
       try {
-        const response = await fetch('https://podcast-api.netlify.app/shows');
-        const data = await response.json();
-        setPodcasts(data);
+        const response = await api.getShows();
+        setPodcasts(response);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching podcasts:', error);
       }
     };
 
-    fetchData();
+    fetchPodcasts();
   }, []);
 
   return (
@@ -23,7 +24,13 @@ const PodcastList = () => {
       <h2>Podcasts</h2>
       <ul>
         {podcasts.map((podcast) => (
-          <li key={podcast.id}>{podcast.title}</li>
+          <li key={podcast.id}>
+            <Link to={`/show/${podcast.id}`}>
+              <img src={podcast.thumbnail} alt={podcast.title} />
+              <h3>{podcast.title}</h3>
+            </Link>
+            {/* Render other podcast details as needed */}
+          </li>
         ))}
       </ul>
     </div>

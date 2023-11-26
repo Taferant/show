@@ -1,4 +1,3 @@
-// services/api.js
 const BASE_URL = 'https://podcast-api.netlify.app';
 
 const api = {
