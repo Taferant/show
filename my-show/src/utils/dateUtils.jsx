@@ -1,9 +1,8 @@
-// services/supabase.js
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  'your-supabase-url',
-  'your-supabase-key'
-);
-
-export default supabase;
+const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', options);
+  };
+  
+  export { formatDate };
+  
