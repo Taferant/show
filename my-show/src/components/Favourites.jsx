@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+/*import React, { useState, useEffect } from 'react';
 import api from '../Services/api';
 
 const Favourites = () => {
@@ -36,6 +36,54 @@ const Favourites = () => {
 
   return (
     <div>
+      <h2>Your Favourites</h2>
+      {favourites.length > 0 ? (
+        <ul>
+          {favourites.map((show) => (
+            <li key={show.id}>
+              <img src={show.thumbnail} alt={show.title} />
+              <h3>{show.title}</h3>
+              <button onClick={() => removeFromFavourites(show.id)}>Remove from Favourites</button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No favourites yet.</p>
+      )}
+    </div>
+  );
+};
+
+export default Favourites;*/
+
+import React, { useState, useEffect } from 'react';
+import api from '../Services/api';
+
+const Favourites = () => {
+  const [favourites, setFavourites] = useState([]);
+
+  useEffect(() => {
+    const storedFavourites = JSON.parse(localStorage.getItem('favourites')) || [];
+    setFavourites(storedFavourites);
+  }, []);
+
+  const addToFavourites = async (showId) => {
+    try {
+      const showDetails = await api.getShowById(showId);
+      setFavourites((prevFavourites) => [...prevFavourites, showDetails]);
+      localStorage.setItem('favourites', JSON.stringify([...favourites, showDetails]));
+    } catch (error) {
+      console.error('Error adding to favourites:', error);
+    }
+  };
+
+  const removeFromFavourites = (showId) => {
+    setFavourites((prevFavourites) => prevFavourites.filter((show) => show.id !== showId));
+    localStorage.setItem('favourites', JSON.stringify(favourites.filter((show) => show.id !== showId)));
+  };
+
+  return (
+    <div className="favourites-container">
       <h2>Your Favourites</h2>
       {favourites.length > 0 ? (
         <ul>
