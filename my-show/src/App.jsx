@@ -5,7 +5,8 @@ import Home from './Pages/Home';
 import FavouritesPage from './Pages/FavouritePage';
 import PodcastList from './components/PodcastList';
 import PodcastDetail from './components/PodcastDetail';
-import Show from './Pages/Show';
+
+
 
 const App = () => {
   return (

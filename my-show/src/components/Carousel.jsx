@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Slider from 'react-slick';
 import api from '../Services/api';
-
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -36,8 +35,9 @@ const Carousel = () => {
       <Slider {...settings}>
         {shows.map((show) => (
           <div key={show.id}>
-            <img src={show.thumbnail} alt={show.title} />
+            <img src={show.image} alt={show.title} />
             <h3>{show.title}</h3>
+            
           </div>
         ))}
       </Slider>

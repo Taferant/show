@@ -26,7 +26,7 @@ const PodcastList = () => {
         {podcasts.map((podcast) => (
           <li key={podcast.id}>
             <Link to={`/show/${podcast.id}`}>
-              <img src={podcast.thumbnail} alt={podcast.title} />
+              <img src={podcast.image} alt={podcast.title} />
               <h3>{podcast.title}</h3>
             </Link>
             {/* Render other podcast details as needed */}

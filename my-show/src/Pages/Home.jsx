@@ -1,7 +1,9 @@
 // Home.js
+
 import React from 'react';
 import PodcastList from '../components/PodcastList';
 import Carousel from '../components/Carousel';
+
 
 const Home = () => {
   return (

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../Services/api';
@@ -27,9 +28,27 @@ const PodcastDetail = () => {
   return (
     <div>
       <h2>{podcast.title}</h2>
-      <img src={podcast.thumbnail} alt={podcast.title} />
+      <img src={podcast.image} alt={podcast.title} />
       <p>{podcast.description}</p>
-      {/* Render other podcast details as needed */}
+
+      <h3>Seasons</h3>
+      <ul>
+        {podcast.seasons.map((season) => (
+          <li key={season.id}>
+            <p>{season.title}</p>
+            
+            <h4>Episodes</h4>
+            <ul>
+              {season.episodes.map((episode) => (
+                <li key={episode.id}>
+                  <p>{episode.title}</p>
+                  {/* Render other episode details as needed */}
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
