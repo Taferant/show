@@ -42,7 +42,11 @@ const PodcastDetail = () => {
               {season.episodes.map((episode) => (
                 <li key={episode.id}>
                   <p>{episode.title}</p>
-                  {/* Render other episode details as needed */}
+                  <p>{episode.description}</p>
+                  <audio controls>
+                    <source src={episode.audio} type="audio/mpeg" />
+                    
+                  </audio>
                 </li>
               ))}
             </ul>
@@ -54,3 +58,4 @@ const PodcastDetail = () => {
 };
 
 export default PodcastDetail;
+

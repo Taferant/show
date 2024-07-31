@@ -1,4 +1,5 @@
 // FavouritesPage.js
+
 import React from 'react';
 import Favourites from '../components/Favourites';
 
@@ -12,3 +13,4 @@ const FavouritesPage = () => {
 };
 
 export default FavouritesPage;
+

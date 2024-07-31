@@ -29,7 +29,16 @@ const PodcastList = () => {
               <img src={podcast.image} alt={podcast.title} />
               <h3>{podcast.title}</h3>
             </Link>
-            {/* Render other podcast details as needed */}
+            <p>{podcast.description}</p>
+            <p>Genres: {podcast.genres.map(genre => genre).join(', ')}</p>
+            {podcast.preview && (
+              <div>
+                <audio controls>
+                  <source src={podcast.preview} type="audio/mpeg" />
+                  
+                </audio>
+              </div>
+            )}
           </li>
         ))}
       </ul>
@@ -38,3 +47,5 @@ const PodcastList = () => {
 };
 
 export default PodcastList;
+
+

@@ -59,18 +59,19 @@
 // FilterInput.js
 import React, { useState, useEffect } from 'react';
 import api from '../Services/api';
-import '../components/FilterImput.css'
-
+//import '../components/FilterInput.css';
 
 const FilterInput = () => {
   const [inputValue, setInputValue] = useState('');
+  const [allShows, setAllShows] = useState([]);
   const [filteredShows, setFilteredShows] = useState([]);
 
   useEffect(() => {
     const fetchAllShows = async () => {
       try {
         const response = await api.getShows();
-        setFilteredShows(response);
+        setAllShows(response);
+        setFilteredShows(response); // Initialize filtered shows with all shows
       } catch (error) {
         console.error('Error fetching shows:', error);
       }
@@ -83,7 +84,7 @@ const FilterInput = () => {
     const value = e.target.value;
     setInputValue(value);
 
-    const filtered = filteredShows.filter((show) =>
+    const filtered = allShows.filter((show) =>
       show.title.toLowerCase().includes(value.toLowerCase())
     );
 
@@ -118,4 +119,3 @@ const FilterInput = () => {
 };
 
 export default FilterInput;
-
